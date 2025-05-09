@@ -109,13 +109,19 @@
 }
 
 body {
-margin: 0;
-padding: 0;
-color: #ffffff;
-font-family: "Segoe UI", sans-serif;
-position: relative;
-  overflow-x: hidden; /* hides horizontal overflow */
-  overflow-y: auto;   /* enables vertical scrolling */
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(-45deg, #000, #0a0a0a, var(--eerie-black-2));
+  background-size: 400% 400%; /* Enables animation movement */
+  animation: gradientFlow 10s ease infinite;
+  color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .background-iframe {
@@ -436,8 +442,7 @@ option {
   </style>
 </head>
 <body>
-   <iframe src="index.html" class="background-iframe"></iframe>
-  <div class="overlay"></div>
+<div id="tsparticles"></div>
   <div class="container">
     <!-- Close Button -->
     <button class="close-button" onclick="window.history.back();">×</button>
@@ -511,6 +516,8 @@ option {
     <button class="button">Continue to Purchase</button>
   </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 <script>
 const usdInput = document.getElementById("usdInput");
 const solOutput = document.getElementById("solOutput");
@@ -610,6 +617,45 @@ function selectCoinFromURLHash() {
 // Call on load
 selectCoinFromURLHash();
 
+
+   tsParticles.load("tsparticles", {
+      background: { color: { value: "transparent" } },
+      fpsLimit: 60,
+      particles: {
+        color: { value: "#EFD87B" },
+        links: {
+          enable: true,
+          color: "#ffffff",
+          distance: 120,
+          opacity: 0.09,
+          width: 1
+        },
+        collisions: { enable: false },
+        move: {
+          direction: "none",
+          enable: true,
+          outModes: { default: "bounce" },
+          speed: 1
+        },
+        number: {
+          value: 100,
+          density: { enable: true, area: 800 }
+        },
+        opacity: { value: 0.5 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 3 } }
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "repulse" },
+          resize: true
+        },
+        modes: {
+          repulse: { distance: 100, duration: 0.4 }
+        }
+      },
+      detectRetina: true
+    });
 </script>
 
 </body>
