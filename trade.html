@@ -108,21 +108,44 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(-45deg, #000, #0a0a0a, var(--eerie-black-2));
-  background-size: 400% 400%; /* Enables animation movement */
-  animation: gradientFlow 10s ease infinite;
-  color: #ffffff;
-  font-family: "Segoe UI", sans-serif;
-}
+    body {
+      margin: 0;
+      padding: 0;
+      color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
 
-@keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    /* Background iframe */
+    .background-iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      pointer-events: none; /* Prevents clicks on the iframe */
+      filter: blur(10px) brightness(0.8); /* Soft blur effect */
+    }
+
+    /* Foreground content */
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+    }
+
+    /* Optional overlay to darken */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
 
 body.active { overflow: hidden; }
 
@@ -412,6 +435,8 @@ option {
   </style>
 </head>
 <body>
+   <iframe src="index.html" class="background-iframe"></iframe>
+  <div class="overlay"></div>
   <div class="container">
     <!-- Close Button -->
     <button class="close-button" onclick="window.history.back();">×</button>
