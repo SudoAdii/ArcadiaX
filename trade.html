@@ -118,16 +118,18 @@
     }
 
     /* Background iframe */
-    .background-iframe {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -2;
-      pointer-events: none; /* Prevents clicks on the iframe */
-      filter: blur(10px) brightness(0.8); /* Soft blur effect */
-    }
+.background-iframe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none; /* Prevents clicks on the iframe */
+  filter: blur(10px) brightness(0.8); /* Soft blur effect */
+  border: none; /* ✅ Removes the white border */
+}
+
 
     /* Foreground content */
     .content {
